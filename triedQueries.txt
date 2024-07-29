@@ -1,0 +1,73 @@
+# Write your query or mutation here
+query getAllUsers{
+  users{
+    id
+    firstName
+    lastName
+    # email
+  }
+}
+
+
+
+query getAllQuotes{
+  quotes{
+    name
+    by
+  }
+}
+
+
+query getUserandQuote{
+  users{
+    id
+    firstName
+    lastName
+    quotes{
+      name
+    }
+  }
+}
+
+
+query getUserById{
+  user(id:"23131"){
+    id
+    firstName
+    lastName
+    quotes{
+      name
+    }
+  }
+}
+
+
+
+
+query getQuoteById($userid:ID!){
+	iquote(by:$userid){
+    name
+    # by
+  }
+}
+
+{
+  "userid": "4232"
+}
+
+
+
+query getUserById($quoteBy:ID!){
+  user(id:$quoteBy){
+    id
+    firstName
+    lastName
+    quotes{
+      name
+    }
+  }
+}
+
+{
+  "quoteBy": "23131"
+}
