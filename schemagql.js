@@ -22,8 +22,15 @@ const typeDef = gql`
     }
 
     type Mutation {
-        signupUserDummy(firstName: String!, lastName: String!, email: String!,password:String!): User
+        signupUserDummy(input: UserInput): User
     }
-`
+
+    input UserInput {
+        firstName: String
+        lastName: String
+        email: String
+        password: String
+    }
+`;
 
 export default typeDef;
