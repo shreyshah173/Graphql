@@ -1,15 +1,16 @@
 import { gql } from 'apollo-server-express';
 
+
 const typeDef = gql`
     type Query {
         users: [User]
         quotes: [Quote]
-        user(id: ID!): User
+        user(_id: ID!): User
         iquote(by: ID!): [Quote]
     }
     
     type User { 
-        id: ID!
+        _id: ID!
         firstName: String
         lastName: String
         email: String
@@ -22,7 +23,7 @@ const typeDef = gql`
     }
 
     type Mutation {
-        signupUserDummy(input: UserInput): User
+        signupUser(input: UserInput): User
     }
 
     input UserInput {

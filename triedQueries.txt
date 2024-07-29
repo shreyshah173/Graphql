@@ -2,7 +2,7 @@
 1
 query getAllUsers{
   users{
-    id
+    _id
     firstName
     lastName
     # email
@@ -21,7 +21,7 @@ query getAllQuotes{
 3
 query getUserandQuote{
   users{
-    id
+    _id
     firstName
     lastName
     quotes{
@@ -32,8 +32,8 @@ query getUserandQuote{
 
 4
 query getUserById{
-  user(id:"23131"){
-    id
+  user(_id:"23131"){
+    _id
     firstName
     lastName
     quotes{
@@ -53,14 +53,14 @@ query getQuoteById($userid:ID!){
 }
 
 {
-  "userid": "4232"
+  "user_id": "4232"
 }
 
 
 6
 query getUserById($quoteBy:ID!){
-  user(id:$quoteBy){
-    id
+  user(_id:$quoteBy){
+    _id
     firstName
     lastName
     quotes{
@@ -76,7 +76,7 @@ query getUserById($quoteBy:ID!){
 7
 mutation createNewUSer{
   signupUserDummy(firstName:"Shrey",lastName:"Shah",email:"jain.shrey1110@gmail.com",password:"123456"){
-    id
+    _id
     firstName
     lastName
   }
@@ -84,7 +84,7 @@ mutation createNewUSer{
 
 query getAllUsers{
   users{
-    id
+    _id
     firstName
     lastName
     # email
@@ -95,7 +95,7 @@ query getAllUsers{
 8
 mutation createNewUSer($input:UserInput!){
   user:signupUserDummy(input:$input){
-    id
+    _id
     firstName
     lastName
   }
