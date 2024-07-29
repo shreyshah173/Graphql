@@ -1,4 +1,5 @@
 # Write your query or mutation here
+1
 query getAllUsers{
   users{
     id
@@ -9,7 +10,7 @@ query getAllUsers{
 }
 
 
-
+2
 query getAllQuotes{
   quotes{
     name
@@ -17,7 +18,7 @@ query getAllQuotes{
   }
 }
 
-
+3
 query getUserandQuote{
   users{
     id
@@ -29,7 +30,7 @@ query getUserandQuote{
   }
 }
 
-
+4
 query getUserById{
   user(id:"23131"){
     id
@@ -43,7 +44,7 @@ query getUserById{
 
 
 
-
+5
 query getQuoteById($userid:ID!){
 	iquote(by:$userid){
     name
@@ -56,7 +57,7 @@ query getQuoteById($userid:ID!){
 }
 
 
-
+6
 query getUserById($quoteBy:ID!){
   user(id:$quoteBy){
     id
@@ -70,4 +71,41 @@ query getUserById($quoteBy:ID!){
 
 {
   "quoteBy": "23131"
+}
+
+7
+mutation createNewUSer{
+  signupUserDummy(firstName:"Shrey",lastName:"Shah",email:"jain.shrey1110@gmail.com",password:"123456"){
+    id
+    firstName
+    lastName
+  }
+}
+
+query getAllUsers{
+  users{
+    id
+    firstName
+    lastName
+    # email
+  }
+}
+
+
+8
+mutation createNewUSer($input:UserInput!){
+  user:signupUserDummy(input:$input){
+    id
+    firstName
+    lastName
+  }
+}
+
+{
+  "input": {
+    "firstName": "Shrey",
+    "lastName": "Shah",
+    "email": "jain.shrey1110@gmail.com",
+    "password": "123"
+  }
 }
