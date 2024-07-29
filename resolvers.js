@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { quotes, users } from './fakedb.js';
 import { randomBytes } from 'crypto';
+import jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt';
 
 const user = mongoose.model('User');
@@ -32,6 +33,25 @@ const resolvers = {
 
             await newUser.save();
             return newUser;
+        },
+        signinUser: async (_, { signinput }) => {
+            const existingUser = await user.findOne({ email: signinput.email });
+            if (!existingUser) {
+                throw new Error('User does not exist');
+            }
+            
+            const valid = await bcrypt.compare(signinput.password, existingUser.password);
+            if (!valid) {
+                throw new Error('Invalid password');
+            }
+
+            const token = jwt.sign(
+                { email: existingUser.email, _id: existingUser._id },
+                'secret',
+                { expiresIn: '1h' }
+            );
+
+            return { token: token };
         }
     }
 };

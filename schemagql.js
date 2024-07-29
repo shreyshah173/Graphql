@@ -1,6 +1,5 @@
 import { gql } from 'apollo-server-express';
 
-
 const typeDef = gql`
     type Query {
         users: [User]
@@ -22,15 +21,25 @@ const typeDef = gql`
        by: String 
     }
 
+    type Token {
+        token: String
+    }
+
     type Mutation {
-        signupUser(input: UserInput): User
+        signupUser(input: UserInput!): User
+        signinUser(signinput: UserSignIn!): Token
     }
 
     input UserInput {
-        firstName: String
-        lastName: String
-        email: String
-        password: String
+        firstName: String!
+        lastName: String!
+        email: String!
+        password: String!
+    }
+    
+    input UserSignIn {
+        email: String!
+        password: String!
     }
 `;
 

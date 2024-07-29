@@ -109,3 +109,18 @@ mutation createNewUSer($input:UserInput!){
     "password": "123"
   }
 }
+
+
+9
+mutation signinUser($var: UserSignIn!) {
+  user: signinUser(signinput: $var) {
+    token
+  }
+}
+
+{
+  "var": {
+    "email": "jain.shrey1110@gmail.com",
+    "password": "123"
+  }
+}
