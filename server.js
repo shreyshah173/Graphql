@@ -1,13 +1,15 @@
-import { ApolloServer, gql } from "apollo-server";
+import { ApolloServer } from "apollo-server";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+import './models/User.js';
+import './models/Quotes.js';
 import resolvers from "./resolvers.js";
 import typeDef from "./schemagql.js";
 import dotenv from 'dotenv';
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 dotenv.config();
 
-const url = process.env.mongourl;
+const url = process.env.MONGOURL;
 
 mongoose.connect(url);
 
